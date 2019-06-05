@@ -1,0 +1,26 @@
+{
+  "name": "dszostak/sitemap_parser",
+  "description": "Sitemap Parser",
+  "type": "project",
+  "authors": [
+    {
+      "name": "Dominik Szostak",
+      "email": "dominik.szostak@gate-software.com"
+    }
+  ],
+  "require" : {
+    "php" : ">=7.1.0",
+    "ext-SimpleXML": "*"
+  },
+  "autoload" : {
+    "psr-4" : {
+      "Snowdog\\DevTest\\" : "src"
+    }
+  },
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "https://github.com/dominikszostak95/sitemap-parser.git"
+    }
+  ]
+}

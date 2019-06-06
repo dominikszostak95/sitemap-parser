@@ -44,7 +44,7 @@ class FileManager
      */
     public function validate(array $file)
     {
-        if (preg_match("/\.(xml)$/", $file['ame'])) {
+        if (preg_match("/\.(xml)$/", $file['name'])) {
             throw new \RuntimeException('Invalid file type!');
         }
 

@@ -16,11 +16,5 @@
     "psr-4" : {
       "Snowdog\\DevTest\\" : "src"
     }
-  },
-  "repositories": [
-    {
-      "type": "vcs",
-      "url": "https://github.com/dominikszostak95/sitemap-parser.git"
-    }
-  ]
+  }
 }

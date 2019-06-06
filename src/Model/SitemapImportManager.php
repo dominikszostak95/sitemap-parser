@@ -61,9 +61,14 @@ class SitemapImportManager
     /**
      * @param $file
      * @param User $user
+     * @return bool
      */
     public function import($file, User $user)
     {
+        if (!$user || !$this->fileManager->validate($file)) {
+            return false;
+        }
+
         $sitemapFile = $this->fileManager->getFileContent($file);
         $sitemap = $this->sitemapParser->parse($sitemapFile);
 
@@ -73,21 +78,31 @@ class SitemapImportManager
             }
         }
 
+        return true;
     }
 
     /**
      * @param $website
      * @param $pages
      * @param User $user
+     * @return bool
      */
     private function saveData($website, $pages, User $user)
     {
+        if (empty($website) || empty($pages)) {
+            return false;
+        }
+
         $websiteId = $this->websiteManager->create($user, $website, $website);
 
-        if (!empty($websiteId)) {
-            foreach ($pages as $page) {
-                $this->pageManager->create($this->websiteManager->getById($websiteId), $page);
-            }
+        if (empty($websiteId)) {
+            return false;
         }
+
+        foreach ($pages as $page) {
+            $this->pageManager->create($this->websiteManager->getById($websiteId), $page);
+        }
+
+        return true;
     }
 }

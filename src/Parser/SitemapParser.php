@@ -2,7 +2,11 @@
 
 namespace Snowdog\DevTest\Parser;
 
-class SitemapParser
+/**
+ * Class SitemapParser
+ * @package Snowdog\DevTest\Parser
+ */
+class SitemapParser implements SitemapParserInterface
 {
     /**
      * {@inheritdoc}
@@ -14,7 +18,9 @@ class SitemapParser
 
         foreach ($xml->url as $website) {
             foreach ($website->url as $page) {
-                $parsed[(parse_url($website->loc)['host'])][] = parse_url($page->loc)['path'];
+                if (!empty($website->loc) && !empty($page->lock)) {
+                    $parsed[(parse_url($website->loc)['host'])][] = parse_url($page->loc)['path'];
+                }
             }
         }
 
